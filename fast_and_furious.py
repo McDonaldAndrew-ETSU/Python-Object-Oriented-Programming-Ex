@@ -1,13 +1,8 @@
 import datetime, math
-# Approximate nitrous shot to horsepower(hp) and torque(tq) ratio is 1:1.
-# Nitrous will only last 3 seconds. Power will revert back to stock.
-# Approximate parasitic loss from superchargers is 12% of hp and tq
+# Approximate nitrous shot to horsepower(hp) ratio is 1:1.
+# Approximate parasitic loss from superchargers is 12% of hp
 # Approximate gain of 4% of hp and torque boost per 1 boost psi 
-# Approximate boost build time is immediate for Supercharged engines (0 seconds)
-# Approximate boost build time (turbo lag) is 0.35 seconds per 1 boost psi
-# Twincharger has both super and turbo. The effects of both are combined:
-# The sc has no turbo lag, but parasitic loss. It becomes decoupled when the turbo spools to meet the boost psi (boost build time)
-# The tc allows there to be no more parasitic loss once the boost build time has finished.
+# Twincharger has both super and turbo. The effects of both are combined.
 class Car:
     def __init__(self, make, model, year, weight, hp_stock, tq_stock, power_opt, n2o_shot, b_psi):
         self.__make = make
@@ -20,7 +15,6 @@ class Car:
         self.__n2o_shot = n2o_shot
         self.__b_psi = b_psi
         self.__horsepower = self.max_power(hp_stock)
-        self.__torque = self.max_power(tq_stock)
     def get_make(self):
         return self.__make
     def get_model(self):
@@ -51,8 +45,6 @@ class Car:
 
     def get_horsepower(self):
         return self.__horsepower
-    def get_torque(self):
-        return self.__torque
     
 
     def max_power(self, hp_or_tq):
@@ -151,8 +143,8 @@ def generateRacers(racer):
         f"| Name: {racer.get_name()}\tAge: {racer.get_age()} | Car of Choice:\n" +
         f"| Stats:                        |\t{racer.get_car().get_year()} {racer.get_car().get_make()} {racer.get_car().get_model()}\n" +
         f"| ******                        |\t  Horsepower: {racer.get_car().get_horsepower()}\n" +
-        f"|\t5 Speed Shifting: {racer.get_five_speed_shifting()}/10 |\t Torque: {racer.get_car().get_torque()}\n" +
-        f"|\tDrifting: {racer.get_drifting()}/10         |\t Forced Induction Charger: {racer.get_car().get_power_opt()}\n" +
+        f"|\t5 Speed Shifting: {racer.get_five_speed_shifting()}/10 |\t Forced Induction Charger: {racer.get_car().get_power_opt()}\n" +
+        f"|\tDrifting: {racer.get_drifting()}/10         |\n" +
         f"|\tPassing: {racer.get_passing()}/10          |\n" +
         f"|\tCornering: {racer.get_cornering()}/10        | Winner?: {racer.get_winner()}\n" +
         f"****************************************************************************\n" 
