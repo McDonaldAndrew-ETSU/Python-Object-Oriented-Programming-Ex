@@ -27,26 +27,21 @@ class Car:
         return self.__hp_stock
     def get_tq_stock(self):
         return self.__tq_stock
-
     def get_power_opt(self):
         return self.__power_opt
     def set_power_opt(self, new_opt):
         self.__power_opt = new_opt
-
     def get_n2o_shot(self):
         return self.__n2o_shot
     def set_n2o_shot(self, new_n20):
         self.__n2o_shot = new_n20
-
     def get_b_psi(self):
         return self.__b_psi
     def set_b_psi(self, new_b_psi):
         self.__b_psi = new_b_psi
-
     def get_horsepower(self):
         return self.__horsepower
     
-
     def max_power(self, hp_or_tq):
         power_factor = self.get_b_psi() * .04
         gain = hp_or_tq * power_factor
@@ -63,6 +58,7 @@ class Car:
             force = force + self.get_n2o_shot()
 
         return force    
+
 
 class Racer:
     def __init__(self, name, age, five_speed_shifting, drifting, passing, cornering, car):
@@ -93,6 +89,7 @@ class Racer:
         return self.__winner
     def set_winner(self, new_winner):
         self.__winner = new_winner
+
 
 class Race:
     def __init__(self, title, date, racer_list, duration):
@@ -126,6 +123,7 @@ class Race:
         winning_racer = racers[index_of_winning_acceleration]
         winning_racer.set_winner(True)
         return winning_racer.get_name()
+
 
 
 car_one = Car('Pontiac', 'Catalina', 1966, 4000, 330.0, 400.0, None, 50, 0)
