@@ -1,4 +1,4 @@
-import datetime, math
+import math
 # Approximate nitrous shot to horsepower(hp) ratio is 1:1.
 # Approximate parasitic loss from superchargers is 12% of hp
 # Approximate gain of 4% of hp and torque boost per 1 boost psi 
@@ -90,6 +90,18 @@ class Racer:
     def set_winner(self, new_winner):
         self.__winner = new_winner
 
+    def generateRacers(self):
+        print(
+            f"\n___________________________________________________________________________\n" +
+            f"| Name: {self.get_name()}\tAge: {self.get_age()} | Car of Choice:\n" +
+            f"| Stats:                        |\t{self.get_car().get_year()} {self.get_car().get_make()} {self.get_car().get_model()}\n" +
+            f"| ******                        |\t  Horsepower: {self.get_car().get_horsepower()}\n" +
+            f"|\t5 Speed Shifting: {self.get_five_speed_shifting()}/10 |\t Forced Induction Charger: {self.get_car().get_power_opt()}\n" +
+            f"|\tDrifting: {self.get_drifting()}/10         |\n" +
+            f"|\tPassing: {self.get_passing()}/10          |\n" +
+            f"|\tCornering: {self.get_cornering()}/10        | Winner?: {self.get_winner()}\n" +
+            f"****************************************************************************\n" 
+        )
 
 class Race:
     def __init__(self, title, date, racer_list, duration):
@@ -123,38 +135,3 @@ class Race:
         winning_racer = racers[index_of_winning_acceleration]
         winning_racer.set_winner(True)
         return winning_racer.get_name()
-
-
-
-car_one = Car('Pontiac', 'Catalina', 1966, 4000, 330.0, 400.0, None, 50, 0)
-car_two = Car('Plymouth', 'Road Runner', 1969, 3800, 400, 425, None, 50, 0)
-
-racer_one = Racer('Dom Torretta', '28', 10, 7, 9, 8, car_one)
-racer_two = Racer('Paul Walker', '26', 9, 7, 10, 10, car_two)
-
-racer_list = [racer_one, racer_two]
-
-
-def generateRacers(racer):
-    print(
-        f"\n___________________________________________________________________________\n" +
-        f"| Name: {racer.get_name()}\tAge: {racer.get_age()} | Car of Choice:\n" +
-        f"| Stats:                        |\t{racer.get_car().get_year()} {racer.get_car().get_make()} {racer.get_car().get_model()}\n" +
-        f"| ******                        |\t  Horsepower: {racer.get_car().get_horsepower()}\n" +
-        f"|\t5 Speed Shifting: {racer.get_five_speed_shifting()}/10 |\t Forced Induction Charger: {racer.get_car().get_power_opt()}\n" +
-        f"|\tDrifting: {racer.get_drifting()}/10         |\n" +
-        f"|\tPassing: {racer.get_passing()}/10          |\n" +
-        f"|\tCornering: {racer.get_cornering()}/10        | Winner?: {racer.get_winner()}\n" +
-        f"****************************************************************************\n" 
-    )
-
-
-for racer in racer_list:
-    generateRacers(racer)
-
-race_one = Race('Pink Slip Showdown', datetime.datetime(2004, 6, 24, 10, 24), racer_list, 15.0)
-
-for racer in racer_list:
-    generateRacers(racer)
-
-print(f"On {race_one.get_date()}, {race_one.get_race_winner()} was the winner of the {race_one.get_title()}!")
